@@ -1,4 +1,5 @@
-node-paint
+piki-oekaki
 ==========
 
 Node.js synchronize painter
+
