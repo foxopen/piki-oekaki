@@ -13,7 +13,9 @@ var clickDrag = new Array();
 
 var express = require('express');
 var app = express()
-, io = require('socket.io').listen(app)
+, http = require('http')
+, server = http.createServer(app)
+, io = require('socket.io').listen(server)
 , fs = require('fs')
 
 //var app = require('http').createServer(handler)
