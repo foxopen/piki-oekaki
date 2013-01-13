@@ -12,7 +12,7 @@ var clickSize = new Array();
 var clickDrag = new Array();
 
 var express = require('express');
-var app = require('express').createServer()
+var app = express()
 , io = require('socket.io').listen(app)
 , fs = require('fs')
 
@@ -51,23 +51,23 @@ if (err) {
 res.writeHead(500);
 return res.end('Error loading index.html');
 }
- 
+
 res.writeHead(200);
 res.end(data);
 });
 }
- 
+
 // Initialize the socket stream
 io.sockets.on('connection', function (socket) {
 //setInterval(lineGenerator, 500, socket);
 
   	var i = 0;
 	for(; i < clickX.length; i++)
-	{	
+	{
 		socket.emit('addClick', { x: clickX[i], y:clickY[i],Color:clickColor[i],Tool:clickTool[i],Size:clickSize[i],drag:clickDrag[i] });
 	}
   socket.emit('mouseup');
-  
+
   console.log("AAAA");
   socket.on('addClick', function (data) {
     //console.log(data);
@@ -81,9 +81,9 @@ io.sockets.on('connection', function (socket) {
 });
 
 
-  
 
-  
+
+
  // addClick the socket stream
 
  /**
@@ -103,9 +103,9 @@ function addClick_remote(Rx, Ry, Rdragging,RcurTool,RcurColor,RcurSize)
 	clickDrag.push(Rdragging);
 }
 
- 
- 
- 
+
+
+
 // Generating and sending a line
 function lineGenerator(socket)
 {
