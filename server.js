@@ -20,8 +20,6 @@ var app = express()
 
 //var app = require('http').createServer(handler)
 
-
-
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -32,31 +30,21 @@ app.configure(function(){
 
 
 // Bind HTTP-Server on Port 80
-app.listen(8888);
-
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-});
-app.get('/js/paint.js', function (req, res) {
-  res.sendfile(__dirname + '/js/paint.js');
-});
-app.get('/js/paint.js', function (req, res) {
-  res.sendfile(__dirname + '/js/paint.js');
-});
-
+//app.listen(8888);
+server.listen(8888);
 
 
 // Delivering the main site
 function handler (req, res) {
-fs.readFile(__dirname + '/index.html', function (err, data) {
-if (err) {
-res.writeHead(500);
-return res.end('Error loading index.html');
-}
+  fs.readFile(__dirname + '/index.html', function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
 
-res.writeHead(200);
-res.end(data);
-});
+    res.writeHead(200);
+    res.end(data);
+  });
 }
 
 // Initialize the socket stream
